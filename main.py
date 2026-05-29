@@ -1,10 +1,8 @@
-# codebasics ML course: codebasics.io, all rights reserverd
-
 import streamlit as st
 from prediction_helper import predict
 
 # Define the page layout
-st.title('Health Insurance Cost Predictor')
+st.title('Health Insurance Premium Predictor')
 
 categorical_options = {
     'Gender': ['Male', 'Female'],
@@ -75,4 +73,4 @@ input_dict = {
 # Button to make prediction
 if st.button('Predict'):
     prediction = predict(input_dict)
-    st.success(f'Predicted Health Insurance Cost: {prediction}')
+    st.success(f'Predicted Health Insurance Premium: {prediction}')
