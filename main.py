@@ -9,8 +9,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Custom Premium CSS Injection
-st.markdown("""
+# Custom Premium CSS Injection using native st.html
+st.html("""
 <style>
 /* Import Outfit Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
@@ -114,11 +114,11 @@ div[data-testid="stVerticalBlockBorder"]:hover {
     margin: 8px 0;
 }
 </style>
-""", unsafe_allow_html=True)
+""")
 
-# Main Titles
-st.markdown('<div class="main-title">🏥 Health Insurance Premium Predictor</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub-title">Complete the demographics, lifestyle, and health inputs below for a tailored premium forecast</div>', unsafe_allow_html=True)
+# Main Titles using native st.html
+st.html('<div class="main-title">🏥 Health Insurance Premium Predictor</div>')
+st.html('<div class="sub-title">Complete the demographics, lifestyle, and health inputs below for a tailored premium forecast</div>')
 
 # Select options dictionary - exact matching with original keys and lists
 categorical_options = {
@@ -142,7 +142,7 @@ col1, col2, col3 = st.columns(3)
 # Demographic Card
 with col1:
     with st.container(border=True):
-        st.markdown('<div class="section-header">👤 Demographic Details</div>', unsafe_allow_html=True)
+        st.html('<div class="section-header">👤 Demographic Details</div>')
         gender = st.selectbox('Gender', categorical_options['Gender'])
         age = st.number_input('Age', min_value=18, step=1, max_value=100)
         marital_status = st.selectbox('Marital Status', categorical_options['Marital Status'])
@@ -151,7 +151,7 @@ with col1:
 # Lifestyle & Occupation Card
 with col2:
     with st.container(border=True):
-        st.markdown('<div class="section-header">💼 Lifestyle & Income</div>', unsafe_allow_html=True)
+        st.html('<div class="section-header">💼 Lifestyle & Income</div>')
         income_lakhs = st.number_input('Income in Lakhs', step=1, min_value=0, max_value=200)
         employment_status = st.selectbox('Employment Status', categorical_options['Employment Status'])
         bmi_category = st.selectbox('BMI Category', categorical_options['BMI Category'])
@@ -160,7 +160,7 @@ with col2:
 # Coverage & Health Card
 with col3:
     with st.container(border=True):
-        st.markdown('<div class="section-header">🛡️ Coverage & Health</div>', unsafe_allow_html=True)
+        st.html('<div class="section-header">🛡️ Coverage & Health</div>')
         insurance_plan = st.selectbox('Insurance Plan', categorical_options['Insurance Plan'])
         region = st.selectbox('Region', categorical_options['Region'])
         genetical_risk = st.number_input('Genetical Risk', step=1, min_value=0, max_value=5)
@@ -192,10 +192,10 @@ with col_b2:
 # Display Predict Results in a beautiful Card
 if predict_btn:
     prediction = predict(input_dict)
-    st.markdown(f"""
+    st.html(f"""
     <div class="result-card">
         <div style="font-size: 1.1rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px;">Estimated Annual Premium</div>
         <div class="result-val">₹{prediction:,}</div>
         <div style="font-size: 0.9rem; opacity: 0.85;">Based on your demographic profile & calculated medical risk</div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
